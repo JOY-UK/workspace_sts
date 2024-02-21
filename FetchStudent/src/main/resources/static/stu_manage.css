@@ -1,0 +1,67 @@
+.container{
+    margin: 0 auto;
+    text-align: center;
+}
+/* table, td{
+    border: 1px solid gray;
+    border-collapse: collapse;
+    width: auto;
+    width: 10cm;
+    height: 1cm;
+} */
+select{
+    margin-bottom: 15px;
+}
+.main-table{
+    border: 1px solid gray;
+    border-collapse: collapse;
+    width: 70%;
+}
+/* 
+    >   : 자식태그  ex) container > table
+    ' ' : 자손태그  ex) container tr
+*/
+.main-table > tbody > tr, .main-table > tbody > tr > td{
+    border: 1px solid black;
+    height: 500px;
+    vertical-align: top;
+}
+#stu-list-table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#stu-list-table tr, #stu-list-table td {
+    border: 1px solid black;
+}
+/* :hover - 마우스 올렸을때 */
+#stu-list-table tr:hover{
+    background-color: #dddddd;
+}
+
+.stu-detail-div table{
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.stu-detail-div table tr, .stu-detail-div table td{
+    border: 1px solid black;
+}
+
+.stu-detail-div > div{
+    margin-bottom: 80px;
+}
+
+#name-span:hover{
+    cursor: pointer;
+    
+}
+
+.scoreInput{
+    width: 30px;
+}

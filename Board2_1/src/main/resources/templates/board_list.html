@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<style>
+    .container{
+        width: 600px;
+        margin: 0 auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    tr,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+<body>
+    <div class="container">
+        <th:block th:if="${session.loginInfo != null}">
+            [[${session.loginInfo.memberName}]]님 반갑습니다.
+            <a href="/member/logout">로그아웃</a>
+            <!-- <input type="button" value="로그아웃" onclick="location.href='/member/loginForm'"> -->
+        </th:block>
+       <table>
+        <th:block th:if="${session.loginInfo == null}">
+            <a href="/member/loginForm">Login</a>
+        </th:block>
+
+        <thead>
+            <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일</td>
+                <td>조회수</td>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:if="${#lists.isEmpty(boardSelect)}">
+                                            <!-- (ㅗcontroller에서 넘겨주는데이터) -->
+            <tr>
+                <td colspan="5">조회된 게시글이 없습니다.</td>
+            </tr>
+            
+            </th:block>
+            <th:block th:unless="${#lists.isEmpty(boardSelect)}">
+                <tr th:each="board:${boardSelect}">
+                    <td>[[${board.boardNum}]]</td>  
+                    <td><a th:href="@{/board/boardDetail(boardNum=${board.boardNum})}">[[${board.title}]]</a></td>
+                    <td>[[${board.writer}]]</td>
+                    <td>[[${board.createDate}]]</td>
+                    <td>[[${board.readCnt}]]</td>
+                </tr>
+            </th:block>
+        </tbody>
+            
+       </table>
+       <th:block th:if="${session.loginInfo !=null}">
+        <input type="button" value="글쓰기" th:onclick="|location.href='@{/board/writeBoard}'|">
+       </th:block>
+                                                                            <!--/controller이름  -->
+    </div>
+
+
+</body>
+</html>

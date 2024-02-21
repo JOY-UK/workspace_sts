@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            width: 600px;
+            margin: 0 auto;
+        }
+        table{
+            border: 1px solid black;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            
+        }
+        tr, td{
+            border: 1px solid black;
+        }
+        .btn-div{
+            text-align: center;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    [[${stuList}]]
+        <div class="container">
+            <table>
+            <tr>
+                <td>학번</td>
+                <td>학생명</td>
+                <td>국어점수</td>
+                <td>영어점수</td>
+                <td>총점</td>
+            </tr>
+            <th:block th:each="student : ${stuList} ">
+                <tr>
+                    <td>[[${student.stuNo}]]</td>
+                    <td>
+                        <a th:href="@{stuDetail(stuNo=${student.stuNo})}">[[${student.stuName}]]</a>
+                    </td>
+                    <td>[[${student.korScore}]]</td>
+                    <td>[[${student.engScore}]]</td>
+                    <td>[[${student.korScore} + ${student.engScore}]]</td>
+                </tr>
+            </th:block>
+        </table>
+        <div class="btn-div">
+            <input type="button" value="학생등록" onclick="goReg();">
+        </div>
+</div>
+
+
+<!-- 자바 스크립트 페이지이동 방법(input type=button일때 사용) -->
+<script>
+    function goReg(){
+        location.href='regStu';
+    }
+</script>
+<!-- script안에 regStu 는 컨트롤러에 있는 regStu로 간다는뜻 -->
+
+</body>
+</html>

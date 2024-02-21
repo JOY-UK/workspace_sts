@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<th:block th:if="${session.loginInfo != null}">
+    [[${session.loginInfo.memberName}]]님 반갑습니다.
+    <a href="/member/logout">LOGOUT</a>
+</th:block>
+<th:block th:if="${session.loginInfo == null}">
+    <a href="/member/loginForm">Login</a>
+</th:block>
+<div>
+    <form action="/board/list" method="post">
+        <select name="searchType" >
+            <!-- 이전 list.html에서 제목을 선택했다면 새로 열리는 list.html에서는
+                 제목이 선택!
+                 이전 list.html에서 작성자을 선택했다면 새로 열리는 list.html에서는
+                 작성자를 선택!
+                 th:selected="" 참/또는 거짓
+            -->
+            <option value="TITLE" th:selected="${searchVO.searchType == 'TITLE'}">제목</option>
+            <option value="WRITER" th:selected="${searchVO.searchType == 'WRITER'}">작성자</option>
+        </select>
+        <input type="text" name="searchValue" th:value="${searchVO.searchValue}">
+        <input type="submit" value="검색">
+    </form>
+</div>
+
+<table>
+    <tr>
+        <td>글번호</td>
+        <td>제목</td>
+        <td>작성자</td>
+        <td>작성일</td>
+        <td>조회수</td>
+    </tr>
+    <th:block th:if="${#lists.isEmpty(boardList)}">
+        <tr>
+            <td colspan="5">조회된 게시글이 없습니다.</td>
+        </tr>
+    </th:block>
+    <th:block th:unless="${#lists.isEmpty(boardList)}">
+        <tr th:each="board : ${boardList}">
+            <td>[[${board.boardNum}]]</td>
+            <td><a th:href="@{/board/boardDetail(boardNum=${board.boardNum})}">[[${board.title}]]</a></td>
+            <td>[[${board.writer}]]</td>
+            <td>[[${board.createDate}]]</td>
+            <td>[[${board.readCnt}]]</td>
+        </tr>
+    </th:block>
+</table>
+
+<!-- 페이징코드 -->
+<div>
+    <th:block th:if="${searchVO.prev}" >
+        <a th:href="@{/board/list(nowPage=${searchVO.beginPage-1})}">이전</a> 
+    </th:block>
+    <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage,searchVO.endPage)}">
+        <a th:href="@{/board/list(nowPage=${i})}">[[${i}]]</a>
+    </th:block>
+    <th:block th:if="${searchVO.next}">
+        <a th:href="@{/board/list(nowPage=${searchVO.endPage+1})}">다음</a> 
+    </th:block>
+</div>
+
+
+<input th:if="${session.loginInfo != null}" type="button" value="글쓰기" onclick="goWriteForm()">
+
+    <script>
+        function goWriteForm(){
+            location.href = '/board/writeForm';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+글번호 : [[${board.boardNum}]] <br>   
+제목 : [[${board.title}]] <br>
+작성자 : [[${board.writer}]] <br>
+작성일 : [[${board.createDate}]] <br>
+조회수 : [[${board.readCnt}]] <br>
+내용 : [[${board.content}]] <br>
+<!-- 수정, 삭제 글 작성자이거나, 로그인한 사람이 관리자 일때만 -->
+<input type="button" value="뒤로가기">
+<th:block th:if="${session.loginInfo != null}">
+    <th:block th:if="${session.loginInfo.memberId == board.writer or session.loginInfo.isAdmin == 'Y'}">
+        <input type="button" value="수정하기">
+        <input type="button" value="삭제하기">
+    </th:block>
+</th:block>
+</body>
+</html>

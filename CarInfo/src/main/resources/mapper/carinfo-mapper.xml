@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="carInfoMapper">
+
+    <resultMap id="car" type="com.green.CarInfo.vo.CarVO">
+        <id column="MODEL_NUM"        property="modelNum"/>
+        <result column="MODEL_NAME"   property="modelName"/>
+        <result column="PRICE"        property="price"/>
+        <result column="MANUFACTURER" property="manufacturer"/>
+
+    </resultMap>
+
+    <resultMap id="sale" type="com.green.CarInfo.vo.SalesVO">
+        <id column="SALE_NUM" property="saleNum"/>
+        <result column="PURCHASER" property="purchaser"/>
+        <result column="PURCHASER_TEL" property="purchaserTel"/>
+        <result column="COLOR" property="color"/>
+        <result column="SALE_DATE" property="saleDate"/>
+        <result column="MODEL_NUM" property="modelNum"/>
+        <association property="carList" resultMap="car"/>
+
+
+    </resultMap>
+
+    <insert id="carInsert">
+        INSERT INTO CAR_INFO(
+            MANUFACTURER
+            , MODEL_NAME
+            , PRICE
+        ) VALUES (
+            #{manufacturer}
+            , #{modelName}
+            , #{price}
+        )
+    </insert>
+
+    <select id="carSelect" resultMap="car">
+        SELECT MODEL_NUM
+            , MODEL_NAME
+            , MANUFACTURER
+        FROM CAR_INFO
+    </select>
+
+    <insert id="insertInfo">
+        INSERT INTO SALES_INFO(
+            PURCHASER
+            , COLOR
+            , MODEL_NUM
+            , PURCHASER_TEL
+        ) VALUES (
+            #{purchaser}
+            , #{color}
+            , #{modelNum}
+            , #{purchaserTel}
+        )
+    </insert>
+
+    <select id="carList" resultMap="sale">
+        SELECT CAR.MODEL_NUM
+            , PURCHASER
+            , PURCHASER_TEL
+            , SALE_DATE
+            , COLOR
+            , MODEL_NAME
+            , PRICE
+        FROM CAR_INFO CAR INNER JOIN SALES_INFO SALES
+        ON CAR.MODEL_NUM = SALES.MODEL_NUM
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

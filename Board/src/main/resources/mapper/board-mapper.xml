@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="boardMapper">
+    <resultMap id="board" type="com.green.Board.vo.BoardVo">
+        <result column="BOARD_NUM"      property="boardNum"/>
+        <result column="BOARD_TITLE"    property="boardTitle"/>
+        <result column="BOARD_CONTENT"  property="boardContent"/>
+        <result column="WRITER"         property="writer"/>
+        <result column="CREATE_DATE"    property="createDate"/>
+        <result column="READ_CNT"       property="readCnt"/>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO BASIC_BOARD(
+                    BOARD_NUM
+                    , BOARD_TITLE
+                    , BOARD_CONTENT
+                    , WRITER
+                    , CREATE_DATE
+        ) VALUE (
+                    #{boardNum}
+                    , #{boardTitle}
+                    , #{boardContent}
+                    , #{writer}
+                    , #{createDate}
+        )
+    </insert>
+
+    <select id="select" resultMap="board">
+        SELECT BOARD_NUM
+                , BOARD_TITLE
+                , WRITER
+                , CREATE_DATE
+                , READ_CNT
+        FROM BASIC_BOARD
+    </select>
+
+    <select id="selectDetail" resultMap="board">
+        SELECT BOARD_NUM
+                , BOARD_TITLE
+                , WRITER
+                , BOARD_CONTENT
+                , CREATE_DATE
+        FROM BASIC_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM BASIC_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
+
+    <update id="updateCnt">
+        UPDATE BASIC_BOARD
+        SET READ_CNT = READ_CNT + 1
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
+
+    <update id="updateBoard">
+        UPDATE BASIC_BOARD
+        SET
+            BOARD_TITLE = #{boardTitle}
+            , BOARD_CONTENT = #{boardContent}
+        WHERE
+            BOARD_NUM = #{boardNum}
+    </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

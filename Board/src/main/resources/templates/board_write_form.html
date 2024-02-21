@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<style>
+        .container{
+        width: 700px;
+        margin: 0 auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    tr, td{
+        border: 1px solid black;
+    }
+    .btn-div{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <form action="boardadd" method="post">
+            <table>
+                <tr>
+                    <td>글번호</td>
+                    <td><input type="text" name="boardNum"></td>
+                </tr>
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" name="boardTitle"></td>
+                </tr>
+                <tr>
+                    <td>작성자</td>
+                    <td><input type="text" name="writer"></td>
+                </tr>
+                <tr>
+                    <td>작성일</td>
+                    <td><input type="date" name="createDate"></td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td>
+                        <textarea name="boardContent" cols="30" rows="10"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <div><input type="submit" value="글등록"></div>
+    </form>
+</div>
+</body>
+</html>

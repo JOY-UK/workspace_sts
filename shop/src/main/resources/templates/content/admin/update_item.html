@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+<div style="text-align: center;"></div>
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+
+    <input id="updateItemCode" type="hidden" th:value="${updateItemCode}">
+    <div class="row">
+        <div class="col">
+            <div style="text-align: center;" class="mb-3 mt-3">
+                <h2>상품목록</h1>
+            </div>
+            <div class="text-end" style="color: red;">*총 [[${#lists.size(itemList)}]]개의 상품이 등록되어 있습니다.</div>
+            <table class="table table-striped align-middle text-center table-hover">
+                <colgroup>
+                    <col width="10%">
+                    <col width="20%">
+                    <col width="*">
+                    <col width="15%">
+                    <col width="20%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <td>NO</td>
+                        <td>상품코드</td>
+                        <td>상품명</td>
+                        <td>재고</td>
+                        <td>상태</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item, state : ${itemList}" th:onclick="itemInfo([[${item.itemCode}]])">
+                        <td>[[${#lists.size(itemList) - state.index}]]</td>
+                        <td>[[${item.itemCode}]]</td>
+                        <td>[[${item.itemName}]]</td>
+                        <td>[[${item.itemStock}]]</td>
+                        <td>[[${item.strStatus}]]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <div class="col detail-div"></div>
+        </div>
+    </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="img-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">상품 이미지 정보</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img width="100%">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/js/content/admin/update_item.js"></script>
+</th:block>
+
+</html>

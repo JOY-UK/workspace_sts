@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="num1" > + <input type="text" id="num2" > =
+    <input type="text" id="num3"><br>
+    <input type="button" value="더하기" onclick="plus()">
+   
+    <script>
+        let tag1 = document.querySelector('#num1');
+        let tag2 = document.querySelector('#num2');
+        let tag3 = document.querySelector('#num3');
+    
+        function plus(){
+            const num1 = document.querySelector('#num1').value 
+            const num2 = document.querySelector('#num2').value 
+            const num3 = parseInt(num1) + parseInt(num2);
+            
+            // const num3Tag = document.querySelector('#num3');
+            // num3Tag.value = num3;   ㅜ 동일
+
+            document.querySelector('#num3').value = num3;
+            
+            tag3.value = parseInt(tag1.value)  + parseInt(tag2.value)
+
+        }
+    </script>
+
+
+</body>
+</html>

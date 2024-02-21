@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+
+
+<body>
+글번호 : [[${board.boardNum}]] <br>   
+제목 : [[${board.title}]] <br>
+작성자 : [[${board.writer}]] <br>
+작성일 : [[${board.createDate}]] <br>
+조회수 : [[${board.readCnt}]] <br>
+내용 : [[${board.content}]] <br>
+<!-- 수정, 삭제 글 작성자이거나, 로그인한 사람이 관리자 일때만 -->
+<!-- 1번) <input type="button" value="뒤로가기" onclick="history.back(-1)">  -->
+<input type="button" value="뒤로가기" onclick="location.href='/board/list'">
+<!-- 뒤로가기 2가지방법 1번방법 보다 2번방법사용. 이유;1번은 새로고침이 안되고 그대로 돌아감. 실시간 업데이트(조회수, 새로운 글 등등) 반영x 
+    
+-->
+
+<th:block th:if="${session.loginInfo != null}">
+    <th:block th:if="${session.loginInfo.memberId == board.writer or session.loginInfo.isAdmin == 'Y'}">
+        <input type="button" value="수정하기">
+        <input type="button" value="삭제하기" th:onclick="goDelete([[${board.boardNum}]]);">
+    </th:block>
+</th:block><br>
+<form action="/reply/replyBoard" method="post"></form>
+    <th:block th:if="${session.loginInfo != null}">
+        <th:block th:if="${session.loginInfo.memberId == board.writer or session.loginInfo.isAdmin == 'Y'}">
+            <div th:if="${session.loginInfo != null}">
+                <input type="text" name="content">
+                <input type="hidden" name="boardNum" th:value="${board.boardNum}">
+                <input type="submit" value="등록" >
+</form>
+        </th:block>
+    </th:block>
+</div>  
+    <div th:each=" reply : ${replyList}"> 
+        <div>[[${reply.writer}]]</div>
+        <div>[[${reply.createDate}]]</div>
+        <div>[[${reply.content}]]</div>
+        <th:block th:if="${session.loginInfo != null}">
+            <th:block th:if="${session.loginInfo.memberId == board.writer or session.loginInfo.isAdmin == 'Y'}">
+                <form action="/board/replyDelete" method="get">
+                    <input type="hidden" name="boardNum" th:value="${board.boardNum}">
+                    <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
+                    <input type="submit" value="삭제">
+                </form>
+            </th:block>
+        </th:block>
+    </div>
+
+<script>
+    //변수 선언
+    // var a;             - 기존에 쓰던 변수 선언 문법
+    // var aa = 10;
+    // var bb = 'java';
+
+    //추천하는방식
+    // const b = 10;      - 변하지 않는 값을 저장할 때는 const 사용
+    //       b = 20; 오류발생    
+    
+    // let c = 10;        - 변하는 값을 저장할 때는 let사용
+
+
+    const name = '홍';
+    const num1 = 10;
+    const num2 = 20;
+    console.log('안녕하세요~');
+    console.log(name + ' 이라는 사람은 국어점수가 ' + num1 + ' 영어 점수가 ' + num2 + '입니다.');
+    //빽틱
+    console.log(`${name} 이라는 사람은 국어점수가 ${num1} 영어 점수가 ${num2}입니다.`);
+
+
+    function goDelete(boardNum){
+        // location.href = '/board/delete?boardNum=' + boardNum;
+        location.href = `/board/delete?boardNum=${boardNum}`;
+        // 동일한 방법
+    }
+    function deleteReply(replyNum){
+        location.href = `/board/replyDelete?replyNum=${replyNum}`;
+    }
+
+
+
+
+</script>
+</body>
+</html>

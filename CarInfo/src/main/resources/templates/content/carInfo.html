@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/carInfo_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    - 차량등록
+                </div>
+            </div>
+            <form action="/car/carInsert" method="post">
+                <table class="table table-borderless text-center align-middel">
+                    <colgroup>
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="20%">
+                        <col width="*">
+                        <col width="20%">
+                    </colgroup>
+                    <tr>
+                        <td>제조사</td>
+                        <td>
+                            <select name="manufacturer">
+                                <option value="현대">현대</option>
+                                <option value="기아">기아</option>
+                                <option value="쌍용">쌍용</option>
+                            </select>
+                        </td>
+                        <td>모델명</td>
+                        <td><input style="width: 80%;" name="modelName" type="text"></td>
+                        <td>차량가격</td>
+                        <td><input style="width: 80%;" name="price" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="text-end mt-10"><input type="submit" value="등록"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col mb-2">
+                    - 차량목록
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-bordered text-center align-middel">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="*">
+                            <col width="25%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <td>모델번호</td>
+                                <td>모델명</td>
+                                <td>제조사</td>
+                            </tr>
+                        <tbody>
+                            <tr th:each="car : ${carList}">
+                                <td>[[${car.modelNum}]]</td>
+                                <td>[[${car.modelName}]]</td>
+                                <td>[[${car.manufacturer}]]</td>
+                            </tr>
+                        </tbody>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .container{
+        width: 700px;
+        margin: 0 auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    tr, td{
+        border: 1px solid black;
+    }
+    .btn-div{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+    <table>
+        <thead>
+            <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일</td>
+                <td>조회수</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 조회된 데이터가 없으면 -->
+            <th:block th:if="${#lists.isEmpty(boardList)}">
+            <!-- ${#lists.isEmpty(list)} - () controller에 list-->
+                <tr>
+                    <td colspan="5">등록된 게시글이 없습니다.</td>
+                </tr>
+            </th:block>
+
+            <!-- 조회된 데이터가 있으면 -->
+            <th:block th:unless="${#lists.isEmpty(boardList)}">
+                <tr th:each="boardVo:${boardList}">
+                    <td>[[${boardVo.boardNum}]]</td>
+                    <td>
+                      <a th:href="@{boardDetail(boardNum=${boardVo.boardNum})}">[[${boardVo.boardTitle}]]</a>
+                                <!--이동할페이지(VO에서선언한값=${글번호})  -->
+                    </td>
+                    <td>[[${boardVo.writer}]]</td>
+                    <td>[[${boardVo.createDate}]]</td>
+                    <td>[[${boardVo.readCnt}]]</td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+     <div class="btn-div">
+        <input type="button" value="글쓰기" th:onclick="|location.href='@{goboard}'|">
+    </div>
+    </div>
+<!-- 가져갈 데이터 없을때 button으로 만듬 / 가져갈데이터 있을때 summit으로 form같이 작성. -->
+
+</body>
+</html>
+
+

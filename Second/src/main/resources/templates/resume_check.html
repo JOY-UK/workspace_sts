@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    td{
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+<h1>이력서 확인</h1>
+    <table>
+        <tr>
+            <td>이름</td>
+            <td th:text="${resumeVO.name}"></td>
+            <td>연락처</td>
+            <td th:text="${tell}"></td>
+        </tr>
+        <tr>
+            <td>학력</td>
+            <td th:text="${grade}"></td>
+            <td>지원구분</td>
+            <td th:text="${type}"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>학력</td>
+            <td></td>
+            <td>지원구분</td>
+            <td></td>
+        </tr>
+    </table>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+    <div>
+        <form action="updateboard" method="post">
+        <table>
+            <tr>
+                <td>글번호</td>
+                <td><input type="text" name="boardNum" th:value="${board.boardNum}" readonly></td>
+            </tr>
+            <!-- readonly / disabled 둘다 데이터 변경 불가
+                disabled 는 데이터 전달불가능. 가급적 readonly
+            -->
+            <tr>
+                <td>제목</td>
+                <td><input type="text" name="boardTitle" th:value="${board.boardTitle}"></td>
+            </tr>
+            <tr>
+                <td>작성자</td>
+                <td><input type="text" name="writer" th:value="${board.writer}" readonly></td>
+            </tr>
+            <tr>
+                <td>작성일</td>
+                <td><input type="text" name="createDate" th:value="${board.createDate}" readonly></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><textarea  cols="30" name="boardContent"  rows="10">[[${board.boardContent}]]</textarea></td>
+            </tr>
+        </table>
+        <div><input type="submit" value="수정"></div>
+    </form>
+    </div>
+</body>
+</html>

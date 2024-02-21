@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="hearderFragment">
+    <div style="height: 50px;">
+        &nbsp;
+    </div>
+    <div class="header-container">
+        <div class="row">
+            <div class="col mt-30">
+                <table class="table align-middel text-center">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td><span class="pointer-span" onclick="location.href='/car/main'">홈</span></td>
+                        <td><span class="pointer-span" onclick="location.href='/car/carInfo'">차량관리</span></td>
+                        <td><span class="pointer-span" onclick="location.href='/car/saleInfo'">판매정보등록</span></td>
+                        <td><span class="pointer-span" onclick="location.href='/car/saleList'">판매목록</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <div class="row row-cols-5 g-4">
+        <div class="col" th:each="item : ${itemList}">
+            <div class="card">
+                <a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
+                    <img width="100%" th:src="@{'/upload/' + ${item.imgList[0].attachedFileName}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <p class="card-text">[[${item.itemName}]]</p>
+                    <p class="card-text">[[${#numbers.formatCurrency(item.itemPrice)}]]원</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+</html>

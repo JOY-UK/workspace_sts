@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+     [[${member.name}]]회원님 가입을 환영합니다.<br>
+    아래 추가 정보를 입력해주세요
+
+    <form action="goInfo" method="post">
+        <input type="hidden" name="id" th:value="${member.id}">
+        <input type="hidden" name="pw" th:value="${member.pw}">
+        <input type="hidden" name="name" th:value="${member.name}">
+        <input type="hidden" name="email" th:value="${member.email}">
+        <input type="hidden" name="birth" th:value="${member.birth}">
+        <th:block th:each="each : ${member.tel}">
+            <input type="hidden" name="tel" th:value="${each}">
+
+        </th:block>
+
+        <div>
+            관심레슨 
+            <input type="checkbox" name="lesson" value="수영">수영 
+            <input type="checkbox" name="lesson" value="헬스">헬스 
+            <input type="checkbox" name="lesson" value="요가">요가 
+            <input type="checkbox" name="lesson" value="필라테스">필라테스 
+        </div><br>
+        <div>
+            레슨에 참여한 적 있나요?
+            <input type="radio" name="yesOrNo" value="예">예
+            <input type="radio" name="yesOrNo" value="아니오">아니오
+        </div><br>
+        <div>
+            자기소개 <textarea cols="30" rows="10" name="intro"></textarea>
+        </div><br>
+        <input type="submit" value="입력완료">
+    </form>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+  <!-- justify-content-center -->
+  <div class="row">
+        <center>
+        <form action="/admin/regItem" method="post" enctype="multipart/form-data">
+            <div class="col-6 text-center">
+                <div class="col-12">
+                    <label for="" class="form-label" style="float: left;">상품 카테고리</label>
+                    <select id="" class="form-select" name="cateCode">
+                        <option th:each="category : ${categoryList}" th:value="${category.cateCode}">[[${category.cateName}]]</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="basic-url" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text" style="width: 100px;" id="basic-addon5">상　품　명</span>
+                        <input type="text" class="form-control" id="basic-url"
+                             name="itemName">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" style="width: 100px;">가　　　격</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="itemPrice">
+                    <span class="input-group-text">원</span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" style="width: 100px; text-align: center;">상 품 소 개</span>
+                    <textarea class="form-control" aria-label="With textarea"
+                        style="height: 300px; size: none;" name="itemIntro"></textarea>
+                </div>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="" class="form-label" style="float: left;">메인이미지 첨부파일</label>
+                <input class="form-control" type="file" name="mainImg">
+            </div>
+            <div class="col-6 mb-3">
+                <label for="" class="form-label" style="float: left;">상세이미지 첨부파일</label>
+                <input class="form-control" type="file" name="subImgs" multiple>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"/>
+                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                    </svg>
+                    상품 등록
+                </button>
+            </div>
+        </form>
+  </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+</html>

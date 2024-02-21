@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<form action="/member/join" method="post">
+    아이디 : <input type="text" name="memberId"><br>
+    비밀번호 : <input type="text" name="memberPw"><br>
+    이름 : <input type="text" name="memberName"><br>
+    성별 : 
+    <input type="radio" name="gender" value="남">남
+    <input type="radio" name="gender" value="여">여
+    <br>
+    이메일 : <input type="text" name="memberEmail"><br>
+    <input type="submit" value="회원가입">
+</form>
+
+</body>
+</html>

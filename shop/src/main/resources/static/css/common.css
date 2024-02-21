@@ -1,0 +1,32 @@
+/* 모든 html에서 공통적으로 적용되는 css */
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    font-family: 'SUITE-Regular';
+    /* font-size: 18pt; */
+    font-weight: 500;
+}
+
+/* 쇼핑몰 제목 크기 변경 */
+.main-title{
+    font-size: 70pt;
+}
+
+.pointer-span:hover{
+    cursor: pointer;
+    background-color: rgba(216, 216, 216, 0.20);
+}
+
+.header-div{
+    margin-bottom: 1.5rem;
+}
+
+
+
+

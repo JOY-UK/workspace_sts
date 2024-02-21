@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/menu.css">
+    </th:block>
+
+    <th:block th:fragment="menuFragment">
+        
+        <h1 class="test">메뉴파일입니다. [[${name}]]</h1>
+    </th:block>
+
+    </html>

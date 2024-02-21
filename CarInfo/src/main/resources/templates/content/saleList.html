@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/carInfo_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <div class="row">
+        <div class="col">
+            - 차량목록
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered text-center align-middel">
+            <colgroup>
+            <col width="*">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <td style="padding-top: 50px;" rowspan="2">NO</td>
+                    <td colspan="4">구매자정보</td>
+                    <td colspan="2">차량정보</td>
+                </tr>
+                <tr>
+                    <td>구매자명</td>
+                    <td>연락처</td>
+                    <td>구매일자</td>
+                    <td>색상</td>
+                    <td>모델명</td>
+                    <td>금액</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="car : ${carList}">
+                    <td>1</td>
+                    <td>[[${car.purchaser}]]</td>
+                    <td>[[${car.purchaserTel}]]</td>
+                    <td>[[${car.saleDate}]]</td>
+                    <td>[[${car.color}]]</td>
+                    <td>[[${car.carList.modelName}]]</td>
+                    <td>[[${car.carList.price}]]</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+</html>

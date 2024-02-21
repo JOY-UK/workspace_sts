@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/carInfo_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <div class="row">
+        <div class="col">
+            - 구매자 및 차량 정보등록
+        </div>
+    </div>
+    <form action="/car/saleInfoInsert" method="post">
+        <div class="row">
+            <div class="col text-center">
+                <table class="table table-bordered text-center align-middel">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tr>
+                        <td>구매자명</td>
+                        <td colspan="3"><input type="text" name="purchaser"></td>
+                    </tr>
+                        <td>색상</td>
+                        <td>
+                            <select name="color">
+                                <option value="블랙">블랙</option>
+                                <option value="화이트">화이트</option>
+                                <option value="실버">실버</option>
+                                <option value="레드">레드</option>
+                            </select>
+                        </td>
+                        <td>모델</td>    
+                        <td>
+                            <select name="modelNum">
+                                <option th:each=" car : ${carList}" th:value="${car.modelNum}">[[${car.modelName}]]</option>
+                            </select>
+                        </td>    
+                    <tr>
+                        <td>연락처</td>
+                        <td colspan="3"><input type="text" name="purchaserTel"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center"><input type="submit" value="등록"></div>
+        </div>
+    </form>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+</html>

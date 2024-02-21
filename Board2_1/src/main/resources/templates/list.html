@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<th:block th:if="${session.loginInfo != null}">
+    [[${session.loginInfo.memberName}]]님 반갑습니다.
+    <a href="/member/logout">LOGOUT</a>
+</th:block>
+<th:block th:if="${session.loginInfo == null}">
+    <a href="/member/loginForm">Login</a>
+</th:block>   
+<table>
+    <tr>
+        <td>글번호</td>
+        <td>제목</td>
+        <td>작성자</td>
+        <td>작성일</td>
+        <td>조회수</td>
+    </tr>
+    <th:block th:if="${#lists.isEmpty(boardList)}">
+        <tr>
+            <td colspan="5">조회된 게시글이 없습니다.</td>
+        </tr>
+    </th:block>
+    <th:block th:unless="${#lists.isEmpty(boardList)}">
+        <tr th:each="board : ${boardList}">
+            <td>[[${board.boardNum}]]</td>
+            <td><a th:href="@{/board/boardDetail(boardNum=${board.boardNum})}">[[${board.title}]]</a></td>
+            <td>[[${board.writer}]]</td>
+            <td>[[${board.createDate}]]</td>
+            <td>[[${board.readCnt}]]</td>
+        </tr>
+    </th:block>
+</table>
+
+<input th:if="${session.loginInfo != null}" type="button" value="글쓰기" onclick="goWriteForm()">
+
+    <script>
+        function goWriteForm(){
+            location.href = '/board/writeForm';
+        }
+    </script>
+</body>
+</html>
