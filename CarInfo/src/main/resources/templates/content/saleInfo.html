@@ -27,11 +27,11 @@
                     </colgroup>
                     <tr>
                         <td>구매자명</td>
-                        <td colspan="3"><input type="text" name="purchaser"></td>
+                        <td colspan="3"><input type="text" name="purchaser" class="form-control"></td>
                     </tr>
                         <td>색상</td>
                         <td>
-                            <select name="color">
+                            <select name="color" class="form-select">
                                 <option value="블랙">블랙</option>
                                 <option value="화이트">화이트</option>
                                 <option value="실버">실버</option>
@@ -40,19 +40,19 @@
                         </td>
                         <td>모델</td>    
                         <td>
-                            <select name="modelNum">
+                            <select name="modelNum" class="form-select">
                                 <option th:each=" car : ${carList}" th:value="${car.modelNum}">[[${car.modelName}]]</option>
                             </select>
                         </td>    
                     <tr>
                         <td>연락처</td>
-                        <td colspan="3"><input type="text" name="purchaserTel"></td>
+                        <td colspan="3"><input type="text" name="purchaserTel" class="form-control"></td>
                     </tr>
                 </table>
+                <input style="float: right;" class="btn btn-outline-primary" type="submit" value="등록">
             </div>
         </div>
         <div class="row">
-            <div class="col text-center"><input type="submit" value="등록"></div>
         </div>
     </form>
 </th:block>

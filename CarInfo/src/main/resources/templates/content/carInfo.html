@@ -18,7 +18,7 @@
                 </div>
             </div>
             <form action="/car/carInsert" method="post">
-                <table class="table table-borderless text-center align-middel">
+                <table class="table table-bordered text-center align-middel">
                     <colgroup>
                         <col width="15%">
                         <col width="15%">
@@ -30,21 +30,19 @@
                     <tr>
                         <td>제조사</td>
                         <td>
-                            <select name="manufacturer">
+                            <select class="form-select" name="manufacturer">
                                 <option value="현대">현대</option>
                                 <option value="기아">기아</option>
                                 <option value="쌍용">쌍용</option>
                             </select>
                         </td>
                         <td>모델명</td>
-                        <td><input style="width: 80%;" name="modelName" type="text"></td>
+                        <td><input class="form-control" name="modelName" type="text"></td>
                         <td>차량가격</td>
-                        <td><input style="width: 80%;" name="price" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="text-end mt-10"><input type="submit" value="등록"></td>
+                        <td><input class="form-control" name="price" type="text"></td>
                     </tr>
                 </table>
+                    <input style="float: right;" class="btn btn-outline-primary" type="submit" value="등록">
             </form>
         </div>
     </div>
@@ -63,7 +61,7 @@
                             <col width="*">
                             <col width="25%">
                         </colgroup>
-                        <thead>
+                        <thead class="table-success">
                             <tr>
                                 <td>모델번호</td>
                                 <td>모델명</td>

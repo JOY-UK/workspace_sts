@@ -15,20 +15,20 @@
             - 차량목록
         </div>
     </div>
-    <div class="row">
+    <div class="row" >
         <table class="table table-bordered text-center align-middel">
             <colgroup>
+            <col width="7%">
+            <col width="13%">
+            <col width="%">
             <col width="*">
-            <col width="15%">
-            <col width="15%">
-            <col width="15%">
-            <col width="15%">
-            <col width="15%">
+            <col width="10%">
+            <col width="10%">
             <col width="15%">
             </colgroup>
-            <thead>
+            <thead class="table-success">
                 <tr>
-                    <td style="padding-top: 50px;" rowspan="2">NO</td>
+                    <td style="vertical-align: middle;" rowspan="2">NO</td>
                     <td colspan="4">구매자정보</td>
                     <td colspan="2">차량정보</td>
                 </tr>
@@ -42,14 +42,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="car : ${carList}">
-                    <td>1</td>
+                <tr th:each="car, state : ${carList}">
+                    <td>[[${#lists.size(carList) - state.index}]]</td>
                     <td>[[${car.purchaser}]]</td>
                     <td>[[${car.purchaserTel}]]</td>
                     <td>[[${car.saleDate}]]</td>
                     <td>[[${car.color}]]</td>
                     <td>[[${car.carList.modelName}]]</td>
-                    <td>[[${car.carList.price}]]</td>
+                    <td>[[${#numbers.formatCurrency(car.carList.price)}]]만원</td>
                     </tr>
             </tbody>
         </table>
