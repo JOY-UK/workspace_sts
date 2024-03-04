@@ -52,7 +52,7 @@ public class CarInfoController {
     @PostMapping("/saleInfoInsert")
     public String salesInfo(SalesVO salesVO){
         carInfoService.insertInfo(salesVO);
-        return "content/saleList";
+        return "redirect:/car/saleList";
     }
 
     //판매목록

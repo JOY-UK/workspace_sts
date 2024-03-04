@@ -67,6 +67,7 @@
             , PRICE
         FROM CAR_INFO CAR INNER JOIN SALES_INFO SALES
         ON CAR.MODEL_NUM = SALES.MODEL_NUM
+        ORDER BY SALE_DATE DESC
     </select>
 
 </mapper>
