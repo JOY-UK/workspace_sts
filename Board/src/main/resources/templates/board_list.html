@@ -24,6 +24,16 @@
 </style>
 <body>
     <div class="container">
+        <div>
+            <th:block th:if="${session.loginInfo == null}">
+                <a href="/loginForm">LOGIN</a>
+                <a href="/joinForm">JOIN</a>
+            </th:block>
+            <th:block th:if="${session.loginInfo != null}">
+                [[${session.loginInfo.memberId}]]님 방가방가!
+                <a href="/logout">LOGOUT</a>
+            </th:block>
+        </div>
     <table>
         <thead>
             <tr>

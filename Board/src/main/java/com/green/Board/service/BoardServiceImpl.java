@@ -1,6 +1,7 @@
 package com.green.Board.service;
 
 import com.green.Board.vo.BoardVo;
+import com.green.Board.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,15 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int updateBoard(BoardVo boardVo) {
         return sqlSession.update("boardMapper.updateBoard", boardVo);
+    }
+
+    @Override
+    public void join(MemberVO memberVO) {
+        sqlSession.insert("memberMapper.join", memberVO);
+    }
+
+    @Override
+    public MemberVO login(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.login", memberVO);
     }
 }

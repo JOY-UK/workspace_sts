@@ -45,7 +45,7 @@ INSERT INTO item_category VALUES (1, 'IT/인터넷');
 INSERT INTO item_category VALUES (2, '소설/에세이');
 INSERT INTO item_category VALUES (3, '문화여행');
 
-SELECT * FROM item_category;
+SELECT item_imageitem_image* FROM item_category;
 COMMIT;
 
 -- 상품정보 테이블
@@ -86,7 +86,7 @@ CREATE TABLE item_image (
 	, ITEM_CODE INT NOT NULL REFERENCES shop_item (ITEM_CODE)
 );
 
-
+SELECT * FROM item_image;
 -- 장바구니 정보 테이블
 CREATE TABLE SHOP_CART(
 	CART_CODE INT AUTO_INCREMENT PRIMARY KEY

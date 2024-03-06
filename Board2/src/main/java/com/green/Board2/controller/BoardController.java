@@ -37,7 +37,6 @@ public class BoardController {
         //페이지 정보 세팅
         searchVO.setPageInfo();
 
-
         System.out.println(searchVO);
         model.addAttribute("boardList", boardService.selectBoardList(searchVO));
         return "list";

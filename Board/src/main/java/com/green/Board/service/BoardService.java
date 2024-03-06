@@ -1,6 +1,7 @@
 package com.green.Board.service;
 
 import com.green.Board.vo.BoardVo;
+import com.green.Board.vo.MemberVO;
 
 import java.util.List;
 
@@ -25,6 +26,10 @@ public interface BoardService {
     //수정
     int updateBoard(BoardVo boardVo);
 
+    //회원가입
+    void join(MemberVO memberVO);
 
+    //로그인
+    MemberVO login(MemberVO memberVO);
 
 }
