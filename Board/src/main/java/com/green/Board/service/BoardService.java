@@ -30,6 +30,6 @@ public interface BoardService {
     void join(MemberVO memberVO);
 
     //로그인
-    MemberVO login(MemberVO memberVO);
+    MemberVO login(String memberId);
 
 }

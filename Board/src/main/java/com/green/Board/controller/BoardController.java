@@ -4,6 +4,8 @@ import com.green.Board.service.BoardService;
 import com.green.Board.service.BoardServiceImpl;
 import com.green.Board.vo.BoardVo;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +21,30 @@ public class BoardController {
     private BoardServiceImpl boardService; //ㅜ같은말
     //BoardServiceImpl boardService = new BoardServiceImpl();
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
     @GetMapping("/")
     public String boardList(Model model) {
         //게시판목록
        List<BoardVo> list = boardService.select();
         //목록 html전달
        model.addAttribute("boardList",list);
+
+       //암호화 예제
+       encoder.encode("java");
+        String s1 = encoder.encode("java");
+        String s2 = encoder.encode("java");
+        System.out.println(s1);
+        System.out.println(s2);
+
+
+        //암호화 데이터를 기준 데이터
+        boolean b1 = encoder.matches("java", s1);
+        System.out.println(b1);
         return "board_list";
     }
+
 
     //페이지이동
     @GetMapping("/goboard")
@@ -50,6 +68,8 @@ public class BoardController {
         boardService.updateCnt(boardVo.getBoardNum());
         //조회 html전달
         model.addAttribute("selectDetail", board);
+
+
         return "board_detail";
     }
 
